@@ -1,16 +1,31 @@
 import java.util.Scanner;
 
+/**
+ * Creates a console based to-do list where the user can 
+ * add, delete, or view all items.
+ * 
+ * A loop is used to continue input until the user inputs the 
+ * conditional statement.
+ */
 public class M2ToDoApp {
     public static void main(String[] args) throws Exception {
         ToDoList user1 = new ToDoList();
         System.out.println("Welcome to your personal to-do list!");
         boolean quit = false;
-        while (quit == false) {
-            quit = runList(user1);
+
+        while (quit == false) { //to loop until the conditions are met
+            quit = runList(user1); //ToDoList instance passed to the method for reusability
         }
         
     }
 
+    /**
+     * Executes the user interface prompts.
+     * 
+     * @return itemExists Serves as a conditional boolean that tells 
+     * the calling function whether it should stop executing.
+     * @param user1 Takes an instance of the ToDoList for re-use.
+     */
     public static boolean runList(ToDoList user1) {
         String action = "", item = "", answer = "";
         boolean itemExists = false;
@@ -51,13 +66,12 @@ public class M2ToDoApp {
             }
         } else if (action.equalsIgnoreCase("view all")) {
             user1.viewAll();
+        } else if (action.equalsIgnoreCase("q")) {
+            return true;
         } else {
             System.out.println("Invalid entry!\n");
         }
         
-        if (action.equalsIgnoreCase("q")) {
-            return true;
-        }
         return false;
     }
 }
